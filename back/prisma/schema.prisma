@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Doctor {
+  id    String @id @default(uuid())
+  name  String
+  email String
+  crm   String
+
+  specialtyId String
+  specialty   Specialty @relation(fields: [specialtyId], references: [id])
+
+  addressId String
+  address   Address @relation(fields: [addressId], references: [id])
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Appointment Appointment[]
+}
+
+model Pacient {
+  id          String        @id @default(uuid())
+  name        String
+  email       String
+  cpf         String
+  phone       String
+  birthDate   DateTime
+  createBy    String
+  updatedBy   String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  Appointment Appointment[]
+}
+
+model Specialty {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Doctor    Doctor[]
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  zipCode   String
+  street    String
+  number    String
+  city      String
+  state     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Doctor    Doctor[]
+}
+
+model Appointment {
+  id        String     @id @default(uuid())
+  date      DateTime
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Doctor    Doctor?    @relation(fields: [doctorId], references: [id])
+  doctorId  String?
+  Pacient   Pacient?   @relation(fields: [pacientId], references: [id])
+  pacientId String?
+  Requests  Requests[]
+}
+
+model Requests {
+  id            String      @id @default(uuid())
+  appointmentId String
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
