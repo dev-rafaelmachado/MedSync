@@ -21,7 +21,6 @@ export class UpdateAddressUseCase {
     }
 
     const res = await this.addressRepository.update(id, data)
-    console.log(res)
     return res
   }
 }
