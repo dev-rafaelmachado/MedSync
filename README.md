@@ -64,7 +64,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 - O projeto não possui uma documentação.
 - O projeto não possui uma interface responsiva.
 
-O projeto foi desenvolvido com o intuito de explorar e aprimorar minhas habilidades em React, Next.js e Typescript, motivado pelo teste técnico da Volvo que meu amigo realizou. Busquei entender se conseguiria realizar um projeto similar ou comparável, contribuindo assim para o desenvolvimento e aplicação prática dos conhecimentos adquiridos na minha área de estudo, ciência da computação.
+O projeto foi desenvolvido com o intuito de explorar e aprimorar minhas habilidades em React, Next.js e Typescript, motivado pelo teste técnico da Volvo que meu amigo realizou [@marcelowf](https://github.com/marcelowf). Busquei entender se conseguiria realizar um projeto similar ou comparável, contribuindo assim para o desenvolvimento e aplicação prática dos conhecimentos adquiridos na minha área de estudo, ciência da computação.
 
 ## Autores
 
