@@ -1,0 +1,52 @@
+'use client'
+
+import { Back } from '@/components/Back'
+import { Login } from '@/components/Login'
+import { IResponseLoginDTO } from '@/types/beneficiary/IResponseLoginDTO'
+import api from '@/utils/api'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
+
+interface Form {
+  email: string
+  password: string
+}
+
+export const BeneficiaryWrapped = () => {
+  const methods = useForm<Form>()
+  const router = useRouter()
+
+  const { handleSubmit } = methods
+
+  useEffect(() => {
+    const beneficiaryId = localStorage.getItem('beneficiaryId')
+    if (beneficiaryId) {
+      router.push(`/beneficiary/home/${beneficiaryId}`)
+    }
+  }, [router])
+
+  const onSubmit = (data: Form) => {
+    api
+      .post('v1/patient/login', data)
+      .then((response) => {
+        const data: IResponseLoginDTO = response.data
+        localStorage.setItem('beneficiaryId', data.id)
+        router.push(`/beneficiary/home/${data.id}`)
+      })
+      .catch((error) => {
+        console.log(error)
+        toast.error('Erro ao fazer login, tente novamente.')
+      })
+  }
+
+  return (
+    <FormProvider {...methods}>
+      <Back />
+      <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full">
+        <Login title="Portal do Beneficiário" />
+      </form>
+    </FormProvider>
+  )
+}
