@@ -21,6 +21,14 @@ export class AppointmentRepository implements IAppointmentRepository {
           },
         },
       },
+      include: {
+        Doctor: {
+          include: {
+            specialty: true,
+          },
+        },
+        Patient: true,
+      },
     })
     return appointmentCreated
   }
@@ -38,6 +46,14 @@ export class AppointmentRepository implements IAppointmentRepository {
       where: {
         id,
       },
+      include: {
+        Doctor: {
+          include: {
+            specialty: true,
+          },
+        },
+        Patient: true,
+      },
     })
     return appointment || undefined
   }
@@ -46,6 +62,14 @@ export class AppointmentRepository implements IAppointmentRepository {
     const appointments = await prisma.appointment.findMany({
       where: {
         doctorId,
+      },
+      include: {
+        Doctor: {
+          include: {
+            specialty: true,
+          },
+        },
+        Patient: true,
       },
     })
     return appointments
@@ -56,12 +80,29 @@ export class AppointmentRepository implements IAppointmentRepository {
       where: {
         patientId,
       },
+      include: {
+        Doctor: {
+          include: {
+            specialty: true,
+          },
+        },
+        Patient: true,
+      },
     })
     return appointments
   }
 
   async list(): Promise<IGetAppointmentDTO[]> {
-    const appointments = await prisma.appointment.findMany()
+    const appointments = await prisma.appointment.findMany({
+      include: {
+        Doctor: {
+          include: {
+            specialty: true,
+          },
+        },
+        Patient: true,
+      },
+    })
     return appointments
   }
 }

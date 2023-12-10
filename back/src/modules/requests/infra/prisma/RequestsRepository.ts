@@ -24,7 +24,12 @@ export class RequestsRepository implements IRequestsRepository {
   list(): Promise<IGetRequestsByIdDTO[]> {
     const requests = prisma.requests.findMany({
       include: {
-        appointment: true,
+        appointment: {
+          include: {
+            Doctor: true,
+            Patient: true,
+          },
+        },
       },
     })
 
@@ -35,7 +40,12 @@ export class RequestsRepository implements IRequestsRepository {
     const request = await prisma.requests.findFirst({
       where: { id },
       include: {
-        appointment: true,
+        appointment: {
+          include: {
+            Doctor: true,
+            Patient: true,
+          },
+        },
       },
     })
 
@@ -50,7 +60,12 @@ export class RequestsRepository implements IRequestsRepository {
         },
       },
       include: {
-        appointment: true,
+        appointment: {
+          include: {
+            Doctor: true,
+            Patient: true,
+          },
+        },
       },
     })
 
