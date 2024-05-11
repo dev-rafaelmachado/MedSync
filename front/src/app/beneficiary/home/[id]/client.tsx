@@ -1,7 +1,7 @@
 'use client'
 
-import { PatientAppointments } from '@/components/PatientAppointments'
 import { Marker } from '@/components/Marker'
+import { PatientAppointments } from '@/components/PatientAppointments'
 import { AppointmentsProvider } from '@/contexts/AppointmentsContext'
 import { IGetAppointmentsById } from '@/types/appointments/IGetAppointmentsById'
 import { IGetDoctorByIdDTO } from '@/types/doctor/IGetDoctorByIdDTO'

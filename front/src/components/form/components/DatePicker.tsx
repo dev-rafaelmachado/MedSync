@@ -1,18 +1,18 @@
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import {
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
 } from '@/components/ui/form'
 import { cn } from '@/lib/utils'
 import { CalendarIcon } from '@radix-ui/react-icons'
 import {
   Popover,
-  PopoverTrigger,
   PopoverContent,
+  PopoverTrigger,
 } from '@radix-ui/react-popover'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'

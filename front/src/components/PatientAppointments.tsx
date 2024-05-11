@@ -1,10 +1,10 @@
 'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
-import { IGetAppointmentsById } from '@/types/appointments/IGetAppointmentsById'
-import { DataTable } from './Table'
-import { useEffect, useMemo } from 'react'
 import { useAppointments } from '@/contexts/AppointmentsContext'
+import { IGetAppointmentsById } from '@/types/appointments/IGetAppointmentsById'
+import { ColumnDef } from '@tanstack/react-table'
+import { useEffect, useMemo } from 'react'
+import { DataTable } from './Table'
 
 interface Props {
   patientAppointments: IGetAppointmentsById[]

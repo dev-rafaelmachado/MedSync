@@ -5,23 +5,23 @@ import { IGetSpecialtyByIdDTO } from '@/types/specialty/IGetSpecialtyByIdDTO'
 import { Button } from '../ui/button'
 import {
   Dialog,
-  DialogTrigger,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
+  DialogTrigger,
 } from '../ui/dialog'
 
+import { useAppointments } from '@/contexts/AppointmentsContext'
+import api from '@/utils/api'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
+import { v4 as uuidV4 } from 'uuid'
+import { Appointment } from '../PatientAppointments'
 import { DatePicker } from '../form/components/DatePicker'
 import { SelectInput } from '../form/components/SelectInput'
 import { Form } from '../ui/form'
-import api from '@/utils/api'
-import toast from 'react-hot-toast'
-import { useAppointments } from '@/contexts/AppointmentsContext'
-import { Appointment } from '../PatientAppointments'
-import { v4 as uuidV4 } from 'uuid'
-import { useState } from 'react'
 
 interface Props {
   doctors: IGetDoctorByIdDTO[]

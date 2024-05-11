@@ -1,10 +1,10 @@
 'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
 import { IGetAppointmentsById } from '@/types/appointments/IGetAppointmentsById'
-import { DataTable } from './Table'
-import { useMemo, useState } from 'react'
 import api from '@/utils/api'
+import { ColumnDef } from '@tanstack/react-table'
+import { useMemo, useState } from 'react'
+import { DataTable } from './Table'
 
 interface Props {
   appointments: IGetAppointmentsById[]
@@ -68,7 +68,7 @@ export const DoctorAppointments = ({ appointments }: Props) => {
         const { id } = row.original
         const deleteAppointment = async (id: string) => {
           try {
-            await api.post(`/v1/request`, {
+            await api.post('/v1/request', {
               appointmentId: id,
             })
             setDoctorAppointments((prev) => {
@@ -89,6 +89,7 @@ export const DoctorAppointments = ({ appointments }: Props) => {
         return (
           <div>
             <button
+              type="button"
               data-requested={row.original.isRequested}
               className="btn btn-primary text-orange-400 data-[requested=true]:text-zinc-400"
               onClick={() => deleteAppointment(id)}
